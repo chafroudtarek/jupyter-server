@@ -1,12 +1,14 @@
-version: '3'
+version: "3"
 services:
   jupyter:
-    build: 
+    build:
       context: .
       dockerfile: ./docker/jupyter/Dockerfile
     volumes:
       - ./work:/home/jovyan/work
+      - ./jupyterhub_config.py:/home/jovyan/.jupyter/jupyter_server_config.py
     ports:
       - 8888:8888
     container_name: jupyter_notebook
+
     command: "start-notebook.sh --NotebookApp.token="
